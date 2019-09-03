@@ -1,0 +1,40 @@
+body{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.fundoNavbarCollapse{
+    background-image: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%) !important;
+}
+
+.degradeBranco{
+    background-image: linear-gradient(45deg, #f2f2f2 30%, #d9d9d9 90%) !important;
+}
+
+.corDoSistema{
+    color: #FF8E53 !important;
+}
+.linkNavBar:active{
+    font-weight: bold !important;
+}
+.linkNavBar:hover{
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-shadow: 1px 1px 5px #ff000f;
+    transition: 1s text-shadow;
+}
+
+.btnNavBar:hover{
+    font-size: 18px;
+
+}
+.btnNavBar:focus{
+    font-size: 20px;
+    transition: 3s font-size;   
+}
+
+div#navbarDashboard{
+    background-image: url('../assets/imagens/dash_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+

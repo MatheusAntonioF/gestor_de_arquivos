@@ -1,0 +1,22 @@
+{
+    "name": "gestor_de_arquivos/matheus",
+    "description": "Sistema de gerenciamento de arquivos",
+    "authors": [
+        {
+            "name": "MockingWarChief",
+            "email": "matheusantoniof@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Gestor\\":"source/"
+        }
+    },
+    "require": {
+        "twbs/bootstrap": "4.3.1",
+        "faapz/pdo": "^1.11",
+        "components/font-awesome": "^5.9",
+        "timostamm/pathinfo": "dev-master"
+
+    }
+}
