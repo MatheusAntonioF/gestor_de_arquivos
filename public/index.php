@@ -23,8 +23,12 @@ $app->post('/dashboad/uploadArquivo', function(){
     return \Gestor\Controller\DashboardController::uploadArquivo();
 });
 
-$app->get('/cadastrarUsuario', function(){
+$app->get('/viewCadastrar', function(){
     return \Gestor\Controller\IndexController::viewCadastrar();
+});
+
+$app->post('/cadastrarUsuario', function(){
+    return \Gestor\Controller\IndexController::cadastrarUsuario();
 });
 
 

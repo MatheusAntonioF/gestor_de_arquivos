@@ -11,7 +11,6 @@ class AlunoModel extends AbsConexaoBD{
     private $alunoSenha;
 
     public function __construct($alunoId = null, $alunoNome = null, $alunoEmail = null, $alunoSenha = null){
-        parent::__construct();
         $this->alunoId = $alunoId;
         $this->alunoNome = $alunoNome;
         $this->alunoEmail = $alunoEmail;
@@ -19,7 +18,37 @@ class AlunoModel extends AbsConexaoBD{
     }
 
     /* Função para cadastrar um aluno no SGBD */
-    public static function cadastraAluno(){
+    public function cadastraAluno(){
+        $this->iniciaConexaoBD();
+
+        //Verifica se já existe um aluno com o email cadastrado no sistema
+        $query = "SELECT alunoId FROM Aluno WHERE alunoEmail = ?";
+
+        $arrayDeValores = array($this->getAlunoEmail());
+
+        $executou = self::executaPs($query, $arrayDeValores);
+
+        //Verifica se a consulta foi bem sucedida
+        if($executou){
+            if($this->qtdDeLinhas() >= 1){
+                return 0;
+            }else{
+                unset($query);
+            }
+        }
+
+        $query = "INSERT INTO Aluno (alunoNome, alunoEmail, alunoSenha) VALUES (?, ?, ?)";
+
+        $arrayDeValores = array($this->getAlunoNome(), $this->getAlunoEmail(), $this->getAlunoSenha());
+
+        $executou = self::executaPs($query, $arrayDeValores);
+
+        //Verifica se a inserção foi bem sucedida
+        if($executou){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 

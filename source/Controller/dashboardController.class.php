@@ -30,6 +30,8 @@ final class DashboardController extends AbsController{
         /* Somente arquivos PDF */
         $extensãoPermitida = array("pdf");
 
+        /* Utiliza a extensão Path::info para verificar a extensão está contida dentro dos 
+        arquivos permitidos */
         $nome_paraVerificacao = Path::info($_FILES['arquivo']['name']);
 
         $extensao = $nome_paraVerificacao->extension();

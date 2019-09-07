@@ -20,6 +20,10 @@ abstract class AbsConexaoBD extends \PDO {
      * senha
      */
     public function __construct(){
+
+    }
+
+    public function iniciaConexaoBD(){
         try{     
             $this->PDO = parent::__construct("mysql:host={$this->host};dbname={$this->dbName};{$this->confUTF8}",$this->usuario,$this->senha, $this->opcoes);   
             

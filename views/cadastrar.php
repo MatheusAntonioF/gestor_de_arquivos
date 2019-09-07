@@ -82,7 +82,7 @@
                 </div>
             </div>
             <fieldset>
-                <form action="#" method="post" class="mt-3 mb-3 ml-2 mr-2">
+                <form action="?r=/cadastrarUsuario" method="post" class="mt-3 mb-3 ml-2 mr-2">
                     <div class="col-sm-4">
                         <label for="inputNomeCadastro">Email</label>
                         <input type="text" class="form-control" id="inputNomeCadastro" name="nomeUsuario"
@@ -107,14 +107,14 @@
                             placeholder="Escolha uma senha...">
                     </div>
                     <div class="row">
-
+                        
                         <div class="col-sm-12 ml-4 mt-4 custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="radioDocente" name="radioDocente" class="custom-control-input"
+                            <input type="radio" id="radioDocente" name="radio" class="custom-control-input" value="docente"
                                 onclick="exibeDivProfessor();">
                             <label class="custom-control-label" for="radioDocente">Docente</label>
                         </div>
                         <div class="col-sm-12 ml-4 mt-2 custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="radioDiscente" name="radioDiscente" class="custom-control-input"
+                            <input type="radio" id="radioDiscente" name="radio" class="custom-control-input" value="discente"
                                 onclick="ocultaDivProfessor();">
                             <label class="custom-control-label" for="radioDiscente">Discente</label>
                         </div>
@@ -129,35 +129,35 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="matematica"
+                                            <input type="checkbox" value="matematica" class="custom-control-input" id="matematica"
                                                 name="matematica">
                                             <label class="custom-control-label" for="matematica">Matemática</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="portugues"
-                                                name="portugues">
+                                                name="portugues" value="portugues">
                                             <label class="custom-control-label" for="portugues">Português</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="ciencia"
-                                                name="ciencia">
+                                                name="ciencia" value="ciencia">
                                             <label class="custom-control-label" for="ciencia">Ciência</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="historia"
-                                                name="historia">
+                                                name="historia" value="historia">
                                             <label class="custom-control-label" for="historia">História</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="geografia"
-                                                name="geografia">
+                                                name="geografia" value="geografia">
                                             <label class="custom-control-label" for="geografia">Geografia</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="biologia"
-                                                name="biologia">
+                                                name="biologia" value="biologia">
                                             <label class="custom-control-label" for="biologia">Biologia</label>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@
                                     <div class="form-group">
                                         <label for="">Biografia</label>
                                         <small> - Campo opcional</small>
-                                        <textarea class="form-control" name="biografial" id="profBiografia" rows="2"
+                                        <textarea class="form-control" name="biografia" id="profBiografia" rows="2"
                                             placeholder="Digite sua biografia..."></textarea>
                                     </div>
 

@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <h1 class="navbar-brand" href="/">
             <span style="color: #ff000f !important;">
                 <i class="fab fa-asymmetrik"></i>
@@ -76,151 +76,108 @@
     </nav>
 
     <div class="row col-sm-12">
-        <div class="sidebar-sticky col-sm-2 degradeNav shadow p-3 mb-5 bg-white ">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <div class="row">
-                        <div class="col-sm-12 mr-0 pr-0" id="navbarDashboard">
-                            <span class="ml-1" style="font-size: 40px !important; color: whitesmoke !important;">
-                                <i class="fas fa-user-circle"></i>
-                            </span>
-                            <br>
-                            <br>
-                            <span class="mb-0" style="color: whitesmoke">
-                                Matheus Felipe Antonio
-                            </span>
-                            <small class="form-text mt-0" style="color: whitesmoke">
-                                matheusantoniof@gmail.com
-                            </small>
+        <nav class="col-sm-3 d-md-block sidebar position-sticky" style="background-color: #666666;">
 
-                        </div>
-                        <div class="col-sm pt-2" style="background-color: #d9d9d9;">
-                            <p>
-                                <span style="color: #ff000f !important;">
-                                    <i class="fas fa-angle-right"></i>
-                                </span>
-                                Menu de navegação
-                            </p>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item mt-1">
-                        <a class="nav-link" href="#" style="color: #333333 !important;" id="btnDivInicio" onclick="mostraDivApresentacao();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-bar-chart-2">
-                                <line x1="18" y1="20" x2="18" y2="10"></line>
-                                <line x1="12" y1="20" x2="12" y2="4"></line>
-                                <line x1="6" y1="20" x2="6" y2="14"></line>
-                            </svg>
-                            Inicio
-                        </a>
-                    </li>
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Arquivos</span>
-                    <a class="d-flex align-items-center text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-plus-circle">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
-                        </svg>
-                    </a>
-                </h6>
-                <li class="nav-item">
-                    <a class="nav-link btnNavBar" href="#" style="color: #333333 !important;" id="btnUloadArquivo"
-                        onclick="mostraDivUpload();">
+            <div class="row">
+                <div class="col-sm-12 mr-0 pr-0" id="navbarDashboard">
+                    <span class="" style="font-size: 40px !important; color: whitesmoke !important;">
+                        <i class="fas fa-user-circle"></i>
+                    </span>
+                    <br>
+                    <br>
+                    <span class="mb-0" style="color: whitesmoke">
+                        Matheus Felipe Antonio
+                    </span>
+                    <small class="form-text mt-0" style="color: whitesmoke">
+                        matheusantoniof@gmail.com
+                    </small>
+
+                </div>
+                <div class="col-sm pt-2" style="background-color: #d9d9d9;">
+                    <p>
                         <span style="color: #ff000f !important;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-file-text">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10 9 9 9 8 9"></polyline>
-                            </svg>
+                            <i class="fas fa-angle-right"></i>
                         </span>
-                        Upload arquivo
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btnNavBar" href="#" style="color: #333333 !important;" id="btnListaArquivos"
-                        onclick="monstaDivLista();">
-                        <span style="color: #ff000f !important">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-file-text">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10 9 9 9 8 9"></polyline>
-                            </svg>
-                        </span>
-                        Listar arquivos
-                    </a>
-                </li>
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Opções</span>
-                    <a class="d-flex align-items-center text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-plus-circle">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
-                        </svg>
-                    </a>
-                </h6>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: #333333 !important;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-users">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                        Reportar erro
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: #333333 !important;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-layers">
-                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                            <polyline points="2 17 12 22 22 17"></polyline>
-                            <polyline points="2 12 12 17 22 12"></polyline>
-                        </svg>
-                        Sair
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-
-        <div class="col-sm-9 ml-3">
-
-            <!-- Div de apresentação -->
-            <div class="container rounded ml-5 mt-5" id="divApresentacao" style="background-color: #f2f2f2">
-                <div class="text-center">
-                    <h2>Matheus Felipe antonio</h2>
-                    <p class="text-center">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                        like Aldus PageMaker including versions of Lorem Ipsum.
-
+                        Menu de navegação
                     </p>
                 </div>
+            </div>
 
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item mt-0">
+                        <div class="col-sm mt-0 mb-0">
+                            <hr>
+                        </div>
+                    </li>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1">
+                        <span style="color: whitesmoke;">Arquivos</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link btnNavBar" href="#" style="color: #333333 !important;"
+                                id="btnUloadArquivo" onclick="mostraDivUpload();">
+                                <span style="color: #ff000f !important;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                </span>
+                                Upload arquivo
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btnNavBar" href="#" style="color: #333333 !important;"
+                                id="btnListaArquivos" onclick="monstaDivLista();">
+                                <span style="color: #ff000f !important">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                </span>
+                                Listar arquivos
+                            </a>
+                        </li>
+
+                        <li class="nav-item mt-0">
+                            <div class="col-sm mt-0 mb-0">
+                                <hr>
+                            </div>
+                        </li>
+                    </ul>
+
+
+            </div>
+
+        </nav>
+
+
+        <div class="col-sm-9">
+
+            <!-- Div de apresentação -->
+            <div class="jumbotron " id="divApresentacao">
+                <div class="container">
+                    <h1 class="display-3 text-center">Olá, mundo!</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum.</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Saiba mais »</a></p>
+                </div>
             </div>
 
             <!-- Div para submeter o arquivo -->

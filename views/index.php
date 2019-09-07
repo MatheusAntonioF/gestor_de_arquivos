@@ -59,7 +59,7 @@
                         Login
 
                     </button>
-                    <a class="dropdown-item btn btn-outline-dark" href="?r=/cadastrarUsuario">
+                    <a class="dropdown-item btn btn-outline-dark" href="?r=/viewCadastrar">
                         <span style="color: #ff000f !important;">
                             <i class="fas fa-angle-double-right"></i>
                         </span>

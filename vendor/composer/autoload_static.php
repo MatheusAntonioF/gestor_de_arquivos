@@ -57,6 +57,7 @@ class ComposerStaticInit0a05c5bc5a60f3cb670d79fb300badfc
         'Gestor\\Controller\\IndexController' => __DIR__ . '/../..' . '/source/Controller/IndexController.class.php',
         'Gestor\\Model\\AbsConexaoBD' => __DIR__ . '/../..' . '/source/Model/absConexaoBD.class.php',
         'Gestor\\Model\\AlunoModel' => __DIR__ . '/../..' . '/source/Model/alunoModel.class.php',
+        'Gestor\\Model\\ProfessorModel' => __DIR__ . '/../..' . '/source/Model/professorModel.class.php',
         'Gestor\\Router' => __DIR__ . '/../..' . '/source/Router.class.php',
         'TS\\Filesystem\\Path' => __DIR__ . '/..' . '/timostamm/pathinfo/src/Path.php',
     );

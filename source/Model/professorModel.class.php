@@ -1,6 +1,6 @@
 <?php
 
-namespace \Gestor\Model;
+namespace Gestor\Model;
 
 use Gestor\Model\AbsConexaoBD;
 
@@ -13,7 +13,7 @@ class ProfessorModel extends AbsConexaoBD{
     private $profBiografia;
     private $profFotoPerfil;
 
-    public function __construct($profId = null, $profNome = null, $profEmail = null, $profSenha = null, $profDisciplina = null, $profBiografia, $profFotoPerfil){
+    public function __construct($profId = null, $profNome = null, $profEmail = null, $profSenha = null, $profDisciplina = null, $profBiografia = null, $profFotoPerfil = null){
         parent::__construct();
         $this->profCodigo = $profId;
         $this->profNome = $profNome;
@@ -26,7 +26,41 @@ class ProfessorModel extends AbsConexaoBD{
 
     /* Cadastra novo professor no sistema */
     public function cadastraProfessor(){
+        $this->iniciaConexaoBD();
+
+        //Verifica se já existe um professor com o email cadastrado
+        $query = "SELECT profId FROM Professor WHERE profEmail = ?";
+
+        $arrayDeValores = array($this->getProfEmail());
+
+        $executou = self::executaPs($query, $arrayDeValores);
+
+        //Verifica se a consulta foi bem sucedida
+        if($executou){
+            if($this->qtdDeLinhas() >= 1){
+                return 0;
+            }else{
+                unset($query);
+            }
+        }
        
+        $query = "INSERT INTO Professor (profNome, profEmail, profSenha, profDisciplina, profBiografia) VALUES (?, ?, ?, ?, ?)";
+
+        //Filtrar o array para retirar os valores nulos
+        $this->setProfDisciplina(array_filter(($this->getProfDisciplina())));
+        
+        //É preciso converter as disciplinas para JSON
+        $this->setProfDisciplina(json_encode($this->getProfDisciplina()));
+        
+        $arrayDeValores = array($this->getProfNome(), $this->getProfEmail(), $this->getProfSenha(), $this->getProfDisciplina(), $this->getProfBiografia());
+
+        $executou = self::executaPs($query, $arrayDeValores);
+
+        if($executou){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     public function getProfId(){
@@ -34,7 +68,7 @@ class ProfessorModel extends AbsConexaoBD{
     }
 
     public function getProfNome(){
-        return $this->profNome();
+        return $this->profNome;
     }
     public function setProfNome($profNome){
         return $this->profNome = $profNome;
@@ -55,7 +89,7 @@ class ProfessorModel extends AbsConexaoBD{
     }
 
     public function getProfDisciplina(){
-        return $this->proEmail;
+        return $this->profDisciplina;
     }
     public function setProfDisciplina($profDisciplina){
         return $this->profDisciplina = $profDisciplina;

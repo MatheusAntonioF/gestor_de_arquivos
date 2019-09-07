@@ -26,6 +26,7 @@ return array(
     'Gestor\\Controller\\IndexController' => $baseDir . '/source/Controller/IndexController.class.php',
     'Gestor\\Model\\AbsConexaoBD' => $baseDir . '/source/Model/absConexaoBD.class.php',
     'Gestor\\Model\\AlunoModel' => $baseDir . '/source/Model/alunoModel.class.php',
+    'Gestor\\Model\\ProfessorModel' => $baseDir . '/source/Model/professorModel.class.php',
     'Gestor\\Router' => $baseDir . '/source/Router.class.php',
     'TS\\Filesystem\\Path' => $vendorDir . '/timostamm/pathinfo/src/Path.php',
 );
