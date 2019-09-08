@@ -21,6 +21,9 @@ final class IndexController extends AbsController{
         return self::view('cadastrar');
 
     }
+    public static function viewDashboard(){
+        return self::view('dashboard');
+    }
 
     public static function cadastrarUsuario(){
         $userNome = $_POST['nomeUsuario'];
@@ -54,10 +57,15 @@ final class IndexController extends AbsController{
                 //Verifica se os dados não estão vázios
                 if(!empty($userNome) && !empty($userEmail) && !empty($userSenha)){
 
-                    $inseriu = (new AlunoModel(null, $userNome, $userEmail, $userSenha))->cadastraAluno();
-
+                    //$inseriu = (new AlunoModel(null, $userNome, $userEmail, $userSenha))->cadastraAluno();
+                    $inseriu = true;
                     if($inseriu){
-                        return self::view('dashboard');
+
+                        $tk = self::geraTokenDeAcesso(null, $userNome, $userEmail);
+                        var_dump($_SERVER);
+                        self::redirect("viewDashboard");
+
+
                     }
                 }
              

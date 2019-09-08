@@ -26,6 +26,9 @@ $app->post('/dashboad/uploadArquivo', function(){
 $app->get('/viewCadastrar', function(){
     return \Gestor\Controller\IndexController::viewCadastrar();
 });
+$app->get('/viewDashboard', function(){
+    return \Gestor\Controller\IndexController::viewDashboard();
+});
 
 $app->post('/cadastrarUsuario', function(){
     return \Gestor\Controller\IndexController::cadastrarUsuario();

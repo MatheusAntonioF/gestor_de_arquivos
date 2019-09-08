@@ -30,8 +30,9 @@ class AlunoModel extends AbsConexaoBD{
 
         //Verifica se a consulta foi bem sucedida
         if($executou){
-            if($this->qtdDeLinhas() >= 1){
+            if($this->qtdDeLinhas() == 1){
                 return 0;
+                exit();
             }else{
                 unset($query);
             }

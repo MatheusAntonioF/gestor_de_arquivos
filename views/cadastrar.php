@@ -82,11 +82,15 @@
                 </div>
             </div>
             <fieldset>
-                <form action="?r=/cadastrarUsuario" method="post" class="mt-3 mb-3 ml-2 mr-2">
+                <form action="?r=/cadastrarUsuario" method="post" class="mt-3 mb-3 ml-2 mr-2" id="formCadastro"
+                    novalidate>
                     <div class="col-sm-4">
-                        <label for="inputNomeCadastro">Email</label>
+                        <label for="inputNomeCadastro">Nome</label>
                         <input type="text" class="form-control" id="inputNomeCadastro" name="nomeUsuario"
-                            placeholder="Digite seu nome...">
+                            placeholder="Digite seu nome..." required>
+                        <div class="invalid-feedback">
+                            Campo obrigatório
+                        </div>
 
                     </div>
                     <div class="col-sm-7 mt-4">
@@ -97,25 +101,38 @@
                                 <div class="input-group-text">@</div>
                             </div>
                             <input type="email" class="form-control" id="inputEmailCadastro" name="emailUsuario"
-                                placeholder="Seu email...">
+                                placeholder="Seu email..." required>
+                            <div class="invalid-feedback">
+                                Campo obrigatório
+                            </div>
                         </div>
 
                     </div>
                     <div class="col-sm-5 mt-4">
                         <label for="">Senha</label>
-                        <input type="password" class="form-control" name="senhaUsuario" id=""
-                            placeholder="Escolha uma senha...">
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="senhaUsuario" id="senhaUsuario"
+                                placeholder="Escolha uma senha..." required>
+                            <div class="input-group-prepend" id="olho">
+                                <div class="input-group-text">
+                                    <i class="fas fa-eye" ></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback">
+                            Campo obrigatório
+                        </div>
                     </div>
                     <div class="row">
-                        
+
                         <div class="col-sm-12 ml-4 mt-4 custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="radioDocente" name="radio" class="custom-control-input" value="docente"
-                                onclick="exibeDivProfessor();">
+                            <input type="radio" id="radioDocente" name="radio" class="custom-control-input"
+                                value="docente" onclick="exibeDivProfessor();" required>
                             <label class="custom-control-label" for="radioDocente">Docente</label>
                         </div>
                         <div class="col-sm-12 ml-4 mt-2 custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="radioDiscente" name="radio" class="custom-control-input" value="discente"
-                                onclick="ocultaDivProfessor();">
+                            <input type="radio" id="radioDiscente" name="radio" class="custom-control-input"
+                                value="discente" onclick="ocultaDivProfessor();" required>
                             <label class="custom-control-label" for="radioDiscente">Discente</label>
                         </div>
 
@@ -129,8 +146,8 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" value="matematica" class="custom-control-input" id="matematica"
-                                                name="matematica">
+                                            <input type="checkbox" value="matematica" class="custom-control-input"
+                                                id="matematica" name="matematica">
                                             <label class="custom-control-label" for="matematica">Matemática</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
@@ -205,6 +222,36 @@
         }
 
     </script>
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var form = document.getElementById('formCadastro');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+
+        $("#olho").on("click", function () {
+            var senha = $("#senhaUsuario");
+            var tipo = $(senha).attr("type");
+            
+            if(tipo == "password"){
+                senha.attr("type","text");
+            }else{
+                senha.attr("type","password");
+            }
+            
+        });
+    </script>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

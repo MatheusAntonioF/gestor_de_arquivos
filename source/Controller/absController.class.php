@@ -5,7 +5,7 @@ namespace Gestor\Controller;
 use Gestor\Router;
 
 abstract class AbsController{
-    
+
     // Redireciona a ṕagina para a respectiva view dentro da pasta /views
     protected final function view($_name, array $vars = []){
         $_nomeDoArquivo = __DIR__."/../../views/{$_name}.php";
@@ -25,11 +25,34 @@ abstract class AbsController{
         return $params['name'];
     }
 
-    //Verifica se existe um session ativo, caso contrario ativa
-    protected final function verificaSession(){
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
+    //Gera token de acesso para o usuário
+    protected final function geraTokenDeAcesso($iss, $name, $email){
+        //Cabeçalho do token
+        $header = [
+            'alg' => 'HS256',
+            'typ' => 'JWT'
+        ];
+        $header = json_encode($header);
+        $header = base64_encode($header);
+
+        if(is_null($iss)){
+            $iss = "localhost";
         }
+        //Corpo do token
+        $payload = [
+            'iss' => 'localhost',
+            'name' => "{$name}",
+            'email' => "{$email}",
+        ];
+        $payload = json_encode($payload);
+        $payload = base64_encode($payload);
+
+        $cryptoPass = md5(self::getSenhaToken());
+        //Assinatura do token
+        $signature = hash_hmac('sha256',"$header.$payload", "$cryptoPass", true);
+
+        return $signature;
+
     }
 
     //Redireciona a página para um caminho específico
@@ -37,7 +60,15 @@ abstract class AbsController{
         $url = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
         $pastas = explode('?',$_SERVER['REQUEST_URI'])[0];
 
-        header('Location:' . '?r=' . $to);
+        header('Location:' . '?r=/' . $to);
         exit();
     }
+
+    //GETTER AND SETTER
+    protected static function getSenhaToken(){
+        $senhaToken = "Nikkvvlsr31";
+
+        return md5($senhaToken);
+    }
+
 }
