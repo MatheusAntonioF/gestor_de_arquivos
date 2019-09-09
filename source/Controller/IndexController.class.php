@@ -7,10 +7,10 @@ use \Gestor\Model\AlunoModel;
 use \Gestor\Model\ProfessorModel;
 
 final class IndexController extends AbsController{
-    protected static $mensagensDeErro;
+    protected static $mensagens;
 
     public function __construct(){
-
+        self::$mensagens = array();
     }
 
     public static function index(){
@@ -57,18 +57,17 @@ final class IndexController extends AbsController{
                 //Verifica se os dados não estão vázios
                 if(!empty($userNome) && !empty($userEmail) && !empty($userSenha)){
 
-                    //$inseriu = (new AlunoModel(null, $userNome, $userEmail, $userSenha))->cadastraAluno();
-                    $inseriu = true;
+                    $inseriu = (new AlunoModel(null, $userNome, $userEmail, $userSenha))->cadastraAluno();
                     if($inseriu){
 
                         $tk = self::geraTokenDeAcesso(null, $userNome, $userEmail);
-                        var_dump($_SERVER);
-                        self::redirect("viewDashboard");
-
+                        return self::view('dashboard');
 
                     }
+                }else{
+                    self::adicionaMensagemDeErro("Por favor, preencha todos os campos obrigatórios");
+                    return self::view('dashboard');
                 }
-             
             //Verifica se o usuário é professor    
             }else if($discente_docente == "docente"){
 
@@ -80,10 +79,15 @@ final class IndexController extends AbsController{
                     if($inseriu){
                         return self::view('dashboard');
                     }
+                }else{
+                    self::adicionaMensagemDeErro("Por favor, preencha todos os campos obrigatórios");
+                    return self::view('dashboard');
                 }
+            }else{
+                self::adicionaMensagemDeErro("Falha de execução! Por favor, contate o responsável pelo sistema");
             }
         }else{
-
+            self::adicionaMensagemDeErro("Por favor, preencha todos os campos obrigatórios");
             return self::view('cadastrar');
         }
     }
@@ -92,9 +96,56 @@ final class IndexController extends AbsController{
     public static function loginUsuario(){
         $userLogin = $_POST['userLogin'];
         $userSenha = $_POST['userSenha'];
+        $discente_docente = $_POST['radio'];
 
-        return self::view('dashboard');
+        if(!empty($discente_docente)){
 
+            if($discente_docente == "docente"){
+
+                $encontrado = (new ProfessorModel)->loginUsuario($userLogin, $userSenha);
+                
+                if($encontrado){
+                    return self::view("dashboard");
+
+                }else if($encontrado == 0){
+                    self::adicionaMensagemDeErro("Usuário não encontrado");
+                    return self::view("index");
+
+                }else{
+                    self::adicionaMensagemDeErro("Falha de execução! Por favor, contate o responsável pelo sistema");
+                    return self::view("index");
+                }
+
+            }else if($discente_docente == "discente"){
+                $encontrado = (new AlunoModel)->loginUsuario($userLogin, $userSenha);
+
+                if($encontrado){
+                    return self::view("dashboardAluno");
+
+                }else if($encontrado == 0){
+
+                    self::adicionaMensagemDeErro("Usuário não encontrado");
+                    return self::view("index");
+                }else{
+
+                    self::adicionaMensagemDeErro("Falha de execução! Por favor, contate o responsável pelo sistema");
+                    return self::view("index");
+                }
+
+            }else{
+                self::adicionaMensagemDeErro("Falha de execução! Por favor, contate o responsável pelo sistema");
+                return self::view("index");
+            }
+        }else{
+            self::adicionaMensagemDeErro("Por favor, preencha todos os campos obrigatórios");
+            return self::view("index");
+        }
+
+
+    }
+
+    public static function adicionaMensagemDeErro($msg){
+        self::$mensagens[] = $msg;
     }
 
 

@@ -73,6 +73,32 @@
     </nav>
 
     <div class="container" style="margin-top: 5% !important;">
+        <?php 
+            $mensagensExists = \Gestor\Controller\IndexController::$mensagens;
+            if(!is_null($mensagensExists)):
+        ?>
+        <div class="col-sm-4"></div>
+
+        <div id="divErros" class="d-flex justify-content-center col-sm-4">
+
+            <?php 
+                $mensagens = \Gestor\Controller\IndexController::$mensagens;
+                foreach($mensagens as $mensagem): ?>
+
+            <p id="pErros" class="text-center h4 ">
+                <strong>
+                    Atenção:
+                    <?php echo $mensagem; ?>
+                </strong>
+            </p>
+
+            <?php endforeach; ?>
+        </div>
+        <div class="col-sm-4"></div>
+
+        <?php
+            endif;
+        ?>
 
         <table class="table table-hover table-striped">
             <thead>
@@ -131,20 +157,42 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="?r=/loginUsuario" method="POST">
+                    <form action="?r=/loginUsuario" method="POST" id="formLogin" novalidate>
                         <div class="form-group">
                             <label for="userLogin">Login</label>
                             <input type="email" class="form-control" id="userLogin" aria-describedby="emailHelp"
-                                placeholder="Login..." name="userLogin">
+                                placeholder="Login..." name="userLogin" required>
                             <small id="emailHelp" class="form-text text-muted">Seu email não será
                                 compartilhado.</small>
+                            <div class="invalid-feedback">
+                                Campo obrigatório
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="userSenha">Senha</label>
                             <input type="password" class="form-control" id="userSenha" placeholder="Insira sua senha"
-                                name="userSenha">
+                                name="userSenha" required>
+                            <div class="invalid-feedback">
+                                Campo obrigatório
+                            </div>
                         </div>
-                        <button type="subtmit" class="btn btn-success">Entrar</button>
+                        <div class="mb-3">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="radioDiscente" name="radio" class="custom-control-input"
+                                    value="discente" required>
+                                <label class="custom-control-label" for="radioDiscente">Discente</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="radioDocente" name="radio" class="custom-control-input"
+                                    value="docente" required>
+                                <label class="custom-control-label" for="radioDocente">Docente</label>
+                            </div>
+                        </div>
+
+                        <button type="subtmit" class="btn btn-outline-success">
+                            <i class="fas fa-paper-plane"></i>
+                            Entrar
+                        </button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -153,6 +201,26 @@
             </div>
         </div>
     </div>
+
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var form = document.getElementById('formLogin');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+
+    </script>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

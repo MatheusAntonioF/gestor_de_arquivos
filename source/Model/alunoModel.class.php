@@ -53,6 +53,29 @@ class AlunoModel extends AbsConexaoBD{
 
     }
 
+    /* Função para realizar login */
+    public function loginUsuario($alunoEmail, $alunoSenha){
+        $this->iniciaConexaoBD();
+
+        $query = "SELECT alunoEmail, alunoSenha FROM Aluno WHERE alunoEmail = ? AND alunoSenha = ?";
+
+        $arrayDeValores = array($alunoEmail, $alunoSenha);
+
+        $executou = self::executaPs($query, $arrayDeValores);
+
+        //Verifica se a execução foi bem sucedida
+        if($executou){
+            //Verifica se o usuário foi encontrado no BD
+            if($this->qtdDeLinhas() == 1){
+                return true;
+            }else{
+                return 0;
+            }
+        }else{
+            return false;
+        }
+    }
+
     /* Função para excluir um aluno no SGBD */
     public static function excluiAluno(){
 

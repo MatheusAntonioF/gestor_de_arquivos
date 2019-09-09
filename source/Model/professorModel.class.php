@@ -62,6 +62,29 @@ class ProfessorModel extends AbsConexaoBD{
             return false;
         }
     }
+
+    public function loginUsuario($profEmail, $profSenha){
+        $this->iniciaConexaoBD();
+
+        $query = "SELECT profId FROM Professor WHERE profEmail = ? AND profSenha = ? ";
+
+        $arrayDeValores = array($profEmail, $profSenha);
+
+        $executou = self::executaPs($query, $arrayDeValores);
+
+        if($executou){
+            if($this->qtdDeLinhas() == 1){
+                return true;
+            }else{
+                return 0;
+            }
+        }else{
+            return false;
+        }
+    }
+
+
+    //GETTERS AND SETTERS
     
     public function getProfId(){
         return $this->profCodigo;
