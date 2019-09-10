@@ -102,9 +102,11 @@ final class IndexController extends AbsController{
 
             if($discente_docente == "docente"){
 
-                $encontrado = (new ProfessorModel)->loginUsuario($userLogin, $userSenha);
-                
+                $profDados = $encontrado = (new ProfessorModel)->loginUsuario($userLogin, $userSenha);
+
                 if($encontrado){
+                    self::criaCookie('prof', $profDados );
+
                     return self::view("dashboard");
 
                 }else if($encontrado == 0){
@@ -147,6 +149,5 @@ final class IndexController extends AbsController{
     public static function adicionaMensagemDeErro($msg){
         self::$mensagens[] = $msg;
     }
-
 
 }

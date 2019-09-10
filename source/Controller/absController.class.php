@@ -5,6 +5,7 @@ namespace Gestor\Controller;
 use Gestor\Router;
 
 abstract class AbsController{
+    private static $storage = array();
 
     // Redireciona a ṕagina para a respectiva view dentro da pasta /views
     protected final function view($_name, array $vars = []){
@@ -53,6 +54,21 @@ abstract class AbsController{
 
         return $signature;
 
+    }
+    protected final static function leCookie( $key ){
+
+        if( isset( $_COOKIE[ $key ] ) ){
+            return $_COOKIE[ $key ];
+        }else{
+
+            if( isset( static::$storage[$key] ) )
+            return static::$storage[$key];
+        }
+    }
+
+    public final static function criaCookie( $key, $value){
+        self::$storage[$key] = $value;
+        setcookie( $key , $value , time() + ( 2 * 3600 ) );
     }
 
     //Redireciona a página para um caminho específico

@@ -1,6 +1,6 @@
 <?php
 
-namespace \Gestor\Model;
+namespace Gestor\Model;
 
 use Gestor\Model\AbsConexaoBD;
 
@@ -14,7 +14,6 @@ class ArquivoModel extends AbsConexaoBD{
     private $professor_profId;
 
     public function __construct($arquivoId = null, $arquivoNome = null, $arquivo = null, $arquivoDesc = null, $arquivo_dataUpload = null, $professor_profId){
-        parent::__construct();
         $this->arquivoId = $arquivoId;
         $this->arquivoNome = $arquivoNome;
         $this->arquivo = $arquivo;
@@ -25,14 +24,20 @@ class ArquivoModel extends AbsConexaoBD{
 
     /*Função para submeter arquivo no SGBD */
     public function uploadArquivo(){
-        $query = "INSERT INTO Arquivo (arquivoNome, arquivo, arquivoDesc, arquivo_dataUpload,
-         Professor_profId)
+        $this->iniciaConexaoBD();
+        $query = "INSERT INTO Arquivo (arquivoNome, arquivo, arquivoDesc, arquivo_dataUpload, Professor_profId)
          VALUES (`?`, ?, `?`, ?, ?)";
 
-        $arrayDeValores = array($this->getArquivoNome(), $this->getArquivo(), $this->getArquivo_dataUpload(),
+        $arrayDeValores = array($this->getArquivoNome(), $this->getArquivo(), $this->getArquivoDesc(), $this->getArquivo_dataUpload(),
         $this->getProfessor_profId());
 
         $executou = self::executaPs($query, $arrayDeValores);
+
+        if($executou){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

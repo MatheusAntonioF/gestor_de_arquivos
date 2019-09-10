@@ -2,7 +2,10 @@
 
 namespace Gestor\Controller;
 
+use \Gestor\Model\ArquivoModel;
+
 use TS\Filesystem\Path;
+
 
 final class DashboardController extends AbsController{
     protected static $mensagensDeErro;
@@ -17,6 +20,7 @@ final class DashboardController extends AbsController{
 
     /* Função para tratar o upload do arquivo */
     public function uploadArquivo(){
+        
         if(!isset($_FILES['arquivo'])){
             //Arquivo não submetido
             self::$mensagensDeErro[] = "Arquivo não submetido";
@@ -26,21 +30,42 @@ final class DashboardController extends AbsController{
         $arquivoNome = $_FILES['arquivo']['name'];
         $tmpArquivoNome = $_FILES['arquivo']['tmp'];
 
-        
+        $caminhoArquivo = "/".$arquivoNome;
+        $arquivoDesc = $_POST['arquivoDesc'];
+        $profId = $_POST['profId'];
+
+        $verificou = self::verificaExtensaoArquivo($arquivoNome);
+
+        if(!$verificou){
+            self::$mensagensDeErro[] = "Arquivo não permitido";
+            self::view('dashboard');
+        }
+        var_dump($arquivoNome);
+        $submetido = (new ArquivoModel(null, $arquivoNome, $caminhoArquivo, $arquivoDesc, date("Y-m-d"), $profId))->uploadArquivo();
+        if($submetido){
+            echo "FOI";
+        }else{
+            echo "NÂO FOI";
+        }
+
+       
+        // return self::view('dashboard');
+
+    }
+
+    public static function verificaExtensaoArquivo($arquivo){
         /* Somente arquivos PDF */
         $extensãoPermitida = array("pdf");
 
         /* Utiliza a extensão Path::info para verificar a extensão está contida dentro dos 
         arquivos permitidos */
-        $nome_paraVerificacao = Path::info($_FILES['arquivo']['name']);
+        $nome_paraVerificacao = Path::info($arquivo);
 
         $extensao = $nome_paraVerificacao->extension();
         
         if(!in_array($extensao, $extensãoPermitida)){
-            self::$mensagensDeErro[] = "Arquivo não permitido";
+            return false;
         }
-
-        // return self::view('dashboard');
-
+        return true;
     }
 }

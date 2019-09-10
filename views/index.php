@@ -77,9 +77,9 @@
             $mensagensExists = \Gestor\Controller\IndexController::$mensagens;
             if(!is_null($mensagensExists)):
         ?>
-        <div class="col-sm-4"></div>
 
-        <div id="divErros" class="d-flex justify-content-center col-sm-4">
+
+        <div id="divErros" class="col align-self-center mb-4 shadow p-3 mb-5 rounded sombraTexto" >
 
             <?php 
                 $mensagens = \Gestor\Controller\IndexController::$mensagens;
@@ -94,7 +94,6 @@
 
             <?php endforeach; ?>
         </div>
-        <div class="col-sm-4"></div>
 
         <?php
             endif;

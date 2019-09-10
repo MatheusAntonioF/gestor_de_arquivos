@@ -87,10 +87,16 @@
                             <br>
                             <br>
                             <span class="mb-0" style="color: whitesmoke">
-                                Matheus Felipe Antonio
+                                <?php
+                                    $coockie = \Gestor\Controller\AbsController::leCookie('prof');
+                                    echo $coockie['profNome'];
+                                ?>
                             </span>
                             <small class="form-text mt-0" style="color: whitesmoke">
-                                matheusantoniof@gmail.com
+                                <?php
+                                    $coockie = \Gestor\Controller\AbsController::leCookie('prof');
+                                    echo $coockie['profEmail'];
+                                ?>
                             </small>
 
                         </div>
@@ -105,17 +111,18 @@
                     </div>
                 </li>
                 <li class="nav-item mt-1">
-                        <a class="nav-link" href="#" style="color: #333333 !important;" id="btnDivInicio" onclick="mostraDivApresentacao();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-bar-chart-2">
-                                <line x1="18" y1="20" x2="18" y2="10"></line>
-                                <line x1="12" y1="20" x2="12" y2="4"></line>
-                                <line x1="6" y1="20" x2="6" y2="14"></line>
-                            </svg>
-                            Inicio
-                        </a>
-                    </li>
+                    <a class="nav-link" href="#" style="color: #333333 !important;" id="btnDivInicio"
+                        onclick="mostraDivApresentacao();">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-bar-chart-2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                        Inicio
+                    </a>
+                </li>
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Arquivos</span>
                     <a class="d-flex align-items-center text-muted" href="#">
@@ -206,9 +213,16 @@
         <div class="col-sm-9 ml-3">
 
             <!-- Div de apresentação -->
-            <div class="container rounded ml-5 mt-5" id="divApresentacao" style="background-color: #f2f2f2">
+            <div class="container ml-5 mt-5 shadow p-3 mb-5 bg-white rounded" id="divApresentacao">
                 <div class="text-center">
-                    <h2>Matheus Felipe antonio</h2>
+                    <h2>
+                        Bem vindo,
+                        <?php
+                            $coockie = \Gestor\Controller\AbsController::leCookie('prof');
+                            echo " ".$coockie['profNome']."!";
+                        ?>
+
+                    </h2>
                     <p class="text-center">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -224,7 +238,8 @@
             </div>
 
             <!-- Div para submeter o arquivo -->
-            <div class="container" style="display: none !important;" id="divSubmitArquivo">
+            <div class="container ml-5 shadow p-3 mb-5 bg-white rounded" style="display: none !important;"
+                id="divSubmitArquivo">
                 <div class="text-center mt-4">
                     <p class="display-4"> Submeter arquivo</p>
                     <div class="col-md-6 offset-md-3 ">
@@ -234,22 +249,37 @@
 
                 <fieldset>
 
-                    <form action="?r=/dashboad/uploadArquivo" method="post" enctype="multipart/form-data">
+                    <form action="?r=/dashboad/uploadArquivo" method="post" enctype="multipart/form-data"
+                        id="formSubmit" novalidate>
                         <div class="">
                             <div class="form-group mb-4">
+                                <input type="hidden" name="profId" value='
+                                    <?php
+                                        $coockie = \Gestor\Controller\AbsController::leCookie('prof');
+                                        echo $coockie['profId'];
+                                    ?>
+                                '>
                                 <label for="inputNomeArquivo">Nome do arquivo</label>
                                 <input type="text" class="form-control" name="arquivoNome" id="inputNomeArquivo"
-                                    placeholder="Digite o nome do arquivo...">
+                                    placeholder="Digite o nome do arquivo..." required>
+                                <div class="invalid-feedback">
+                                    Campo obrigatório
+                                </div>
                             </div>
                             <div class="form-group mb-5">
                                 <label for="inputDescriçãoDoArquivo">Descrição</label>
+                                <small class="text-muted">- Campo opcional!</small>
                                 <textarea class="form-control" name="arquivoDesc" id="exampleFormControlTextarea1"
                                     rows="2" placeholder="Digite uma descrição para o arquivo..."></textarea>
+
                             </div>
                             <div class="custom-file col-sm-4">
                                 <input type="file" name="arquivo" class="custom-file-input" id="inputArquivo" lang="pt"
                                     required>
                                 <label class="custom-file-label" for="inputArquivo">Escolher arquivo...</label>
+                                <div class="invalid-feedback">
+                                    Campo obrigatório
+                                </div>
 
                             </div>
 
@@ -268,7 +298,8 @@
             </div>
 
             <!-- Div para listar os arquivos submetidos -->
-            <div class="container" style="display: none !important;" id="divListaArquivos">
+            <div class="container container ml-5 shadow p-3 mb-5 bg-white rounded" style="display: none !important;"
+                id="divListaArquivos">
                 <div class="text-center mt-4">
                     <p class="display-4"> Arquivos submetidos</p>
                     <div class="col-md-6 offset-md-3 ">
@@ -348,6 +379,24 @@
             document.getElementById("divSubmitArquivo").style.display = "none";
             document.getElementById("divApresentacao").style.display = "block";
         }
+    </script>
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var form = document.getElementById('formSubmit');
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+
     </script>
 
 

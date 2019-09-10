@@ -14,7 +14,6 @@ class ProfessorModel extends AbsConexaoBD{
     private $profFotoPerfil;
 
     public function __construct($profId = null, $profNome = null, $profEmail = null, $profSenha = null, $profDisciplina = null, $profBiografia = null, $profFotoPerfil = null){
-        parent::__construct();
         $this->profCodigo = $profId;
         $this->profNome = $profNome;
         $this->profEmail = $profEmail;
@@ -66,7 +65,7 @@ class ProfessorModel extends AbsConexaoBD{
     public function loginUsuario($profEmail, $profSenha){
         $this->iniciaConexaoBD();
 
-        $query = "SELECT profId FROM Professor WHERE profEmail = ? AND profSenha = ? ";
+        $query = "SELECT profId, profNome, profEmail FROM Professor WHERE profEmail = ? AND profSenha = ? ";
 
         $arrayDeValores = array($profEmail, $profSenha);
 
@@ -74,13 +73,25 @@ class ProfessorModel extends AbsConexaoBD{
 
         if($executou){
             if($this->qtdDeLinhas() == 1){
-                return true;
+                //Continua
             }else{
                 return 0;
             }
         }else{
             return false;
         }
+
+        $leu = $objetoBD = $this->leTabelaBD();
+
+        if(!$leu){
+            return false;
+        }
+        $arrayDados = array(
+            "profNome" => $objetoBD['profNome'],
+            "profEmail" => $objetoBD['profEmail'],
+            "profId" => $objetoBD['profId']
+        );
+        return $arrayDados;
     }
 
 
