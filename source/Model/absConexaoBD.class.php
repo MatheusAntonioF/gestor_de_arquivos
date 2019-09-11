@@ -44,6 +44,7 @@ abstract class AbsConexaoBD extends \PDO {
                 //Continua               
                 $this->pdoStatment = $preparou;        
             }else{    
+                
                 return false;
             }
 
@@ -58,6 +59,7 @@ abstract class AbsConexaoBD extends \PDO {
             if($executou){          
                 return true;
             }else{
+
                 return false;
             }
             
@@ -86,7 +88,7 @@ abstract class AbsConexaoBD extends \PDO {
         $conteudo_file .= 'Hora: ' . date("H:i:s") . ' | Script: ' . $_SERVER['SCRIPT_NAME'] . PHP_EOL;
         $conteudo_file .= "Query executada: " . $query . ": " . $mensagemDeErro . PHP_EOL . PHP_EOL;
 
-        $diretoriosDeLogs = $_SERVER['DOCUMENT_ROOT'] . "/devUpload/source/BD/Logs";
+        $diretoriosDeLogs = $_SERVER['DOCUMENT_ROOT'] . "/Logs";
 
         // Se o diretório não existir, cria-o
         if (!is_dir($diretoriosDeLogs)) {

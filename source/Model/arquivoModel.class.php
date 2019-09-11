@@ -25,8 +25,10 @@ class ArquivoModel extends AbsConexaoBD{
     /*Função para submeter arquivo no SGBD */
     public function uploadArquivo(){
         $this->iniciaConexaoBD();
-        $query = "INSERT INTO Arquivo (arquivoNome, arquivo, arquivoDesc, arquivo_dataUpload, Professor_profId)
-         VALUES (`?`, ?, `?`, ?, ?)";
+
+        $query = "INSERT INTO Arquivo (arquivoNome, arquivo, arquivoDesc, arquivo_dataUpload, Professor_profId) VALUES (?, ?, ?, ?, ?)";
+
+        
 
         $arrayDeValores = array($this->getArquivoNome(), $this->getArquivo(), $this->getArquivoDesc(), $this->getArquivo_dataUpload(),
         $this->getProfessor_profId());
