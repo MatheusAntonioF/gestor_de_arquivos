@@ -10,29 +10,39 @@ $app = new Router();
 
 /* Rota de início */
 $app->get('/', function(){
-    return \Gestor\Controller\IndexController::index();
+	return \Gestor\Controller\IndexController::index();
+});
+
+/* Rota de retorno da viewCadastrar */
+$app->get('/viewCadastrar', function(){
+	return \Gestor\Controller\IndexController::viewCadastrar();
+});
+
+/* Rota de retorno da viewProfessores */
+$app->get('/viewProfessores', function(){
+	return \Gestor\Controller\IndexController::viewProfessores();
+});
+
+/* Rota de retorno da viewDashboard */
+$app->get('/viewDashboard', function(){
+	return \Gestor\Controller\IndexController::viewDashboard();
 });
 
 /*Rota de Login */
 $app->post('/loginUsuario', function(){
-    return \Gestor\Controller\IndexController::loginUsuario();
+	return \Gestor\Controller\IndexController::loginUsuario();
 });
 
 /* Rota de uploadArquivo */
 $app->post('/dashboad/uploadArquivo', function(){
-    return \Gestor\Controller\DashboardController::uploadArquivo();
+	return \Gestor\Controller\DashboardController::uploadArquivo();
 });
 
-$app->get('/viewCadastrar', function(){
-    return \Gestor\Controller\IndexController::viewCadastrar();
-});
-$app->get('/viewDashboard', function(){
-    return \Gestor\Controller\IndexController::viewDashboard();
-});
-
+/* Rota de cadastrar usuários */
 $app->post('/cadastrarUsuario', function(){
-    return \Gestor\Controller\IndexController::cadastrarUsuario();
+	return \Gestor\Controller\IndexController::cadastrarUsuario();
 });
+
 
 
 $app->run();

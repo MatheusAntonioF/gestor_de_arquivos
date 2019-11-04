@@ -17,28 +17,10 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <title>Gestor de Arquivos</title>
-
-  <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/assets/favicon/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <h1 class="navbar-brand" href="/">
       <span style="color: #ff000f !important;">
         <i class="fab fa-asymmetrik"></i>
@@ -53,10 +35,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link linkNavBar" href="/">Visualizar arquivos <span class="sr-only"></span></a>
+          <a class="nav-link linkNavBar" href="/">Visualizar arquivos <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link linkNavBar" href="?r=/viewProfessores">Professores</a>
+          <a class="nav-link linkNavBar" href="/viewProfessores">Professores</a>
         </li>
         <li class="nav-item dropdown">
         </li>
@@ -88,60 +70,35 @@
 
     </div>
   </nav>
-
-  <div class="container" style="margin-top: 5% !important;">
-    <?php 
-            $mensagensExists = \Gestor\Controller\IndexController::$mensagens;
-            if(!is_null($mensagensExists)):
-        ?>
-
-
-    <div id="divErros" class="col align-self-center mb-4 shadow p-3 mb-5 rounded sombraTexto">
-
-      <?php 
-        $mensagens = \Gestor\Controller\IndexController::$mensagens;
-        foreach($mensagens as $mensagem): ?>
-
-      <p id="pErros" class="text-center h4 ">
-        <strong>
-          Atenção:
-          <?php echo $mensagem; ?>
-        </strong>
-      </p>
-
-      <?php endforeach; ?>
+  
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="rounded-circle" src="assets/imagens/dash_background.jpg" alt="Primeiro Slide">
+        </div>
+        <div class="carousel-item">
+          <h1>Item 2</h1>
+        </div>
+        <div class="carousel-item">
+          <h1>Item 3</h1>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Próximo</span>
+      </a>
     </div>
 
-    <?php
-      endif;
-    ?>
-
-    <div id="alertTable" class="alert alert-success alert-dismissible fade show " role="alert">
-      <strong>Aguarde!</strong> Carregando arquivos.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <table class="table table-hover table-striped">
-
-      <thead>
-        <tr>
-          <th scope="col" class="text-center">#</th>
-          <th scope="col" class="text-center">Nome do arquivo</th>
-          <th scope="col" class="text-center">Data de upload</th>
-          <th scope="col" class="text-center">Download</th>
-        </tr>
-      </thead>
-      <tbody id="tableArquivos">
-
-      </tbody>
-    </table>
-
-
-  </div>
-
-
-  <footer class="container fixed-bottom">
+  <footer class="container mt-5">
     <p class="float-right"><a href="#" style="text-decoration: none;">Início da página</a></p>
     <p>© 2019</p>
     <p>Developed by: <i>Lucas Gabriel Mauricio Coimbra Varela e Matheus Felipe Antonio</i></p>
@@ -209,56 +166,6 @@
     </div>
   </div>
 
-  <script src="assets/jquery/jquery.min.js"></script>
-  <script>
-    (function () {
-      'use strict';
-
-      window.addEventListener('load', function () {
-        var form = document.getElementById('formLogin');
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      }, false);
-    })();
-
-    $(document).ready(function () {
-      $.ajax({
-        url: '/assets/ajax/listaArquivosIndex.php',
-        type: 'POST',
-        data: {},
-
-        //Antes da requisição
-        beforeSend: function () {
-          $('.alert').fadeIn('900000');
-          $('.alert').fadeOut('90000');
-        },
-
-        //Requisição bem sucedida
-        success: function (data) {
-          $('.alert').fadeIn('90000');
-
-          $('#tableArquivos').html(data);
-        },
-
-        //Erro na requisição
-        error: function () {
-          alert("Erro ao carregar arquivos! Por favor contate o responsável pelo sistema");
-        }
-      });
-    });
-
-  </script>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>

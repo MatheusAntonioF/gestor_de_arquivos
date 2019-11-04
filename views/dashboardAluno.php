@@ -87,14 +87,14 @@
               <br>
               <span class="mb-0" style="color: whitesmoke">
                 <?php
-                                    $coockie = \Gestor\Controller\AbsController::leCookie('prof');
-                                    echo $coockie['profNome'];
+                                    $coockie = \Gestor\Controller\AbsController::leCookie('aluno');
+                                    echo $coockie['alunoNome'];
                                 ?>
               </span>
               <small class="form-text mt-0" style="color: whitesmoke">
                 <?php
-                                    $coockie = \Gestor\Controller\AbsController::leCookie('prof');
-                                    echo $coockie['profEmail'];
+                                    $coockie = \Gestor\Controller\AbsController::leCookie('aluno');
+                                    echo $coockie['alunoEmail'];
                                 ?>
               </small>
 
@@ -135,25 +135,8 @@
           </a>
         </h6>
         <li class="nav-item">
-          <a class="nav-link btnNavBar" href="#" style="color: #333333 !important;" id="btnUloadArquivo"
-            onclick="mostraDivUpload();">
-            <span style="color: #ff000f !important;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-file-text">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-            </span>
-            Upload arquivo
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link btnNavBar btnListarArquivos" href="#" style="color: #333333 !important;"
-            id="btnListaArquivos" onclick="monstaDivLista();">
+            id="btnListaArquivos" onclick="mostaDivLista();">
             <span style="color: #ff000f !important">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -218,8 +201,8 @@
           <h2>
             Bem vindo,
             <?php
-                            $coockie = \Gestor\Controller\AbsController::leCookie('prof');
-                            echo " ".$coockie['profNome']."!";
+                            $coockie = \Gestor\Controller\AbsController::leCookie('aluno');
+                            echo " ".$coockie['alunoNome']."!";
                         ?>
 
           </h2>
@@ -237,64 +220,7 @@
 
       </div>
 
-      <!-- Div para submeter o arquivo -->
-      <div class="container ml-5 shadow p-3 mb-5 bg-white rounded" style="display: none !important;"
-        id="divSubmitArquivo">
-        <div class="text-center mt-4">
-          <p class="display-4"> Submeter arquivo</p>
-          <div class="col-md-6 offset-md-3 ">
-            <hr>
-          </div>
-        </div>
 
-        <fieldset>
-
-          <form action="?r=/dashboad/uploadArquivo" method="post" enctype="multipart/form-data" id="formSubmit"
-            novalidate>
-            <div class="">
-              <div class="form-group mb-4">
-                <input type="hidden" name="profId" value='
-                                    <?php
-                                        $coockie = \Gestor\Controller\AbsController::leCookie('prof');
-                                        echo $coockie['profId'];
-                                    ?>
-                                '>
-                <label for="inputNomeArquivo">Nome do arquivo</label>
-                <input type="text" class="form-control" name="arquivoNome" id="inputNomeArquivo"
-                  placeholder="Digite o nome do arquivo..." required>
-                <div class="invalid-feedback">
-                  Campo obrigatório
-                </div>
-              </div>
-              <div class="form-group mb-5">
-                <label for="inputDescriçãoDoArquivo">Descrição</label>
-                <small class="text-muted">- Campo opcional!</small>
-                <textarea class="form-control" name="arquivoDesc" id="exampleFormControlTextarea1" rows="2"
-                  placeholder="Digite uma descrição para o arquivo..."></textarea>
-
-              </div>
-              <div class="custom-file col-sm-4">
-                <input type="file" name="arquivo" class="custom-file-input" id="inputArquivo" lang="pt" required>
-                <label class="custom-file-label" for="inputArquivo">Escolher arquivo...</label>
-                <div class="invalid-feedback">
-                  Campo obrigatório
-                </div>
-
-              </div>
-
-              <div class="form-row mt-5 ml-1">
-                <button type="submit" class="btn btn-outline-success">
-                  <i class="far fa-paper-plane"></i>
-                  Enviar
-                </button>
-              </div>
-
-            </div>
-
-          </form>
-
-        </fieldset>
-      </div>
 
       <!-- Div para listar os arquivos submetidos -->
       <div class="container container ml-5 shadow p-3 mb-5 bg-white rounded" style="display: none !important;"
@@ -358,51 +284,26 @@
   </div>
 
   <script type="text/javascript">
-    function mostraDivUpload() {
-
-      document.getElementById("divSubmitArquivo").style.display = "block";
-      document.getElementById("divListaArquivos").style.display = "none";
-      document.getElementById("divApresentacao").style.display = "none";
-
-    }
-    function monstaDivLista() {
+    function mostaDivLista() {
 
       document.getElementById("divListaArquivos").style.display = "block";
-      document.getElementById("divSubmitArquivo").style.display = "none";
       document.getElementById("divApresentacao").style.display = "none";
     }
     function mostraDivApresentacao() {
 
       document.getElementById("divListaArquivos").style.display = "none";
-      document.getElementById("divSubmitArquivo").style.display = "none";
       document.getElementById("divApresentacao").style.display = "block";
     }
   </script>
   <script src="assets/jquery/jquery.min.js"></script>
   <script>
-    (function () {
-      'use strict';
-
-      window.addEventListener('load', function () {
-        var form = document.getElementById('formSubmit');
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      }, false);
-    })();
 
     $('.btnListarArquivos').on("click", function () {
-      var profId = $('.prof').val();
-      profId = profId.trim();
 
       $.ajax({
-        url: '/assets/ajax/exibeArquivos.php',
+        url: '/assets/ajax/exibeTodosOsArquivos.php',
         type: 'POST',
-        data: { profId: profId },
+        data: { },
 
         //Antes da requisição
         beforeSend: function () {

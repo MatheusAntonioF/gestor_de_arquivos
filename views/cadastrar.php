@@ -8,11 +8,9 @@
 
     <link rel="stylesheet" href="CSS/estilo.css">
 
-    <link rel="stylesheet" href="CSS/estilo.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
     <script src="https://kit.fontawesome.com/a056040057.js"></script>
+		
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
